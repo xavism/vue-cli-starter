@@ -28,8 +28,10 @@ npm run build --report
 # install packages
 npm install —save apollo-client vue-apollo
 ```
+
 > After that, You need to create an Apollo client and install the Vue plugin into your Vue.js app.
 
+###### ~/src/main.js
 ```javascript
 import Vue from 'vue'
 import App from './App'
@@ -61,6 +63,53 @@ new Vue({
 })
 ```
 
+### Fetch data with GraphQL queries
+
+> There are some ways to Fetch data using Apollo Client, but the preferred way to make queries is to declare them with the 'apollo' option in the component definition.
+
+###### ~/src/containers/List.vue
+```javascript
+<template>
+  <tablechars :chars="characters" />
+</template>
+
+<script>
+import tablechars from './../components/table'
+import gql from 'graphql-tag'
+
+const charactersQuery = gql`query CharactersQuery{
+  characters: allCharacters {
+    name,
+    side,
+    weapon{
+      type,
+      color
+    }
+  }
+}
+`
+
+export default {
+  name: 'List',
+  components: { tablechars },
+  data: () => ({
+    characters: [],
+    loading: 0
+  }),
+  apollo: {
+    characters: {
+      query: charactersQuery,
+      loaginKey: 'loading'
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="css" scoped>
+
+</style>
+```
 
 
 

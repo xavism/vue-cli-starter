@@ -3,15 +3,32 @@
 </template>
 
 <script>
-import { characters } from './../data.js'
 import tablechars from './../components/table'
+import gql from 'graphql-tag'
+
+const charactersQuery = gql`query CharactersQuery{
+  characters: allCharacters {
+    name,
+    side,
+    weapon{
+      type,
+      color
+    }
+  }
+}
+`
 
 export default {
   name: 'List',
   components: { tablechars },
-  data () {
-    return {
-      characters
+  data: () => ({
+    characters: [],
+    loading: 0
+  }),
+  apollo: {
+    characters: {
+      query: charactersQuery,
+      loaginKey: 'loading'
     }
   }
 }
