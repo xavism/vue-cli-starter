@@ -1,13 +1,27 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <navbar :routes="routes" id="navbar"/>
+    <div class="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+import navbar from '@/components/navbar'
+import Router from '@/router/index'
+
+let routes = Router.options.routes
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {
+      routes
+    }
+  },
+  components: {
+    navbar
+  }
 }
 </script>
 
@@ -18,6 +32,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#navbar {
+  margin-bottom: 30px;
 }
 </style>
