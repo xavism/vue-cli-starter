@@ -7,13 +7,17 @@ import tablechars from './../components/table'
 import gql from 'graphql-tag'
 
 const charactersQuery = gql`query CharactersQuery{
-  characters: allCharacters {
+  characters: allCharacters (
+    orderBy: createdAt_ASC
+  ){
+    id,
     name,
     side,
     weapon{
       type,
       color
-    }
+    },
+    iconName
   }
 }
 `
