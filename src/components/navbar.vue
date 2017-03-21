@@ -2,7 +2,7 @@
   <nav class="nav">
     <div class="nav-left">
     <router-link class="nav-item" to="/">The Force</router-link>
-    <router-link v-for="route in routes" class="nav-item is-tab" :if="route.tab" :to="route.path" :key="route.path">{{ route.title }}</router-link>
+    <router-link v-for="route in routes" class="nav-item is-tab" v-if="route.tab" :to="route.path" :key="route.path">{{ route.title }}</router-link>
     </div>
 
     <!-- This "nav-toggle" hamburger menu is only visible on mobile -->

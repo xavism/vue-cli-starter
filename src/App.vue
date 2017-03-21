@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <navbar :routes="routes" id="navbar"/>
+    <Navbar :routes="routes" id="navbar"/>
     <div class="container">
       <router-view></router-view>
     </div>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import navbar from '@/components/navbar'
+import Navbar from '@/components/Navbar'
 import Router from '@/router/index'
 
 let routes = Router.options.routes
@@ -20,7 +20,7 @@ export default {
     }
   },
   components: {
-    navbar
+    Navbar
   }
 }
 </script>
@@ -123,4 +123,5 @@ export default {
 #navbar {
   margin-bottom: 30px;
 }
+
 </style>

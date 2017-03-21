@@ -29,23 +29,21 @@ npm run build --report
 npm install —save apollo-client vue-apollo
 ```
 
-> After that, You need to create an Apollo client and install the Vue plugin into your Vue.js app.
+> After that, You need to create an Apollo client and import the Vue plugin into your Vue.js app.
 
 ###### ~/src/main.js
 ```javascript
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import ApolloClient, { createNetworkInterface, addTypename } from 'apollo-client'
+import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import VueApollo from 'vue-apollo'
 
 const apolloClient = new ApolloClient({
   networkInterface: createNetworkInterface({
     uri: 'https://api.graph.cool/simple/v1/cj06jswu35o780184z0bo0yvk',
     transportBatching: true
-  }),
-  queryTransformer: addTypename,
-  dataIdFromObject: r => r.id
+  })
 })
 
 Vue.config.productionTip = false
@@ -75,19 +73,7 @@ new Vue({
 
 <script>
 import tablechars from './../components/table'
-import gql from 'graphql-tag'
-
-const charactersQuery = gql`query CharactersQuery{
-  characters: allCharacters {
-    name,
-    side,
-    weapon{
-      type,
-      color
-    }
-  }
-}
-`
+import charactersService from '@/services/charactersService'
 
 export default {
   name: 'List',
@@ -98,7 +84,7 @@ export default {
   }),
   apollo: {
     characters: {
-      query: charactersQuery,
+      query: charactersService.allCharactersQuery,
       loaginKey: 'loading'
     }
   }

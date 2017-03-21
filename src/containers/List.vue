@@ -4,23 +4,7 @@
 
 <script>
 import tablechars from './../components/table'
-import gql from 'graphql-tag'
-
-const charactersQuery = gql`query CharactersQuery{
-  characters: allCharacters (
-    orderBy: createdAt_ASC
-  ){
-    id,
-    name,
-    side,
-    weapon{
-      type,
-      color
-    },
-    iconName
-  }
-}
-`
+import charactersService from '@/services/charactersService'
 
 export default {
   name: 'List',
@@ -31,7 +15,7 @@ export default {
   }),
   apollo: {
     characters: {
-      query: charactersQuery,
+      query: charactersService.allCharactersQuery,
       loaginKey: 'loading'
     }
   }

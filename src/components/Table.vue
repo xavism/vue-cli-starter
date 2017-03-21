@@ -16,10 +16,16 @@
           </span>
           <h2>{{ char.name }}</h2>
         </td>
-        <td> {{ char.side }} </td>
-        <td> {{ char.weapon.type }} </td>
-        <td><button class="modal-button button" :data-target="'#' + char.id"><i class="sw-pencil-square"></i></button></td>
-
+        <td>
+          <i v-if="char.side == 'Ligh Side'" class='sw-rebel-alliance big-icon'></i>
+          <i v-else class='sw-imperial-emblem big-icon'></i>
+        </td>
+        <td>
+          <i v-if="char.weapon.type == 'Blaster'" class="sw-blaster big-icon"></i>
+          <i v-else class="sw-lightsaber big-icon"></i>
+          <span :class="'weapon-color ' + char.weapon.color"></span>
+        </td>
+        <td><router-link class="button is-primary" :to="'/edit/' +  char.id ">Edit</router-link></td>
       </tr>
     </tbody>
   </table>
@@ -62,6 +68,29 @@ td h2 {
   margin: auto;
   height: 42px;
   font-size: 3em;
+}
+
+.big-icon {
+  font-size: 3em;
+}
+
+.weapon-color {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.weapon-color.Green {
+  background-color: #23d160;
+}
+
+.weapon-color.Blue {
+  background-color: #2F67F8;
+}
+
+.weapon-color.Red {
+  background-color: #CE0C2C;
 }
 
 td button {
