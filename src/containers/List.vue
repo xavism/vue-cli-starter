@@ -4,21 +4,15 @@
 
 <script>
 import tablechars from './../components/table'
-import charactersService from '@/services/charactersService'
 
+import { characters } from './../data'
 export default {
   name: 'List',
   components: { tablechars },
   data: () => ({
-    characters: [],
+    characters: characters,
     loading: 0
-  }),
-  apollo: {
-    characters: {
-      query: charactersService.allCharactersQuery,
-      loaginKey: 'loading'
-    }
-  }
+  })
 }
 </script>
 

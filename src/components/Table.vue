@@ -5,13 +5,9 @@
         <th>Name</th>
         <th>Side</th>
         <th>Weapon</th>
-        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="has-text-centered">
-        <td colspan="4"><router-link class="button is-primary" to="/create">Create</router-link></td>
-      </tr>
       <tr v-for="char in chars">
         <td>
           <span class="character-icon">
@@ -28,7 +24,6 @@
           <i v-else class="sw-lightsaber big-icon"></i>
           <span :class="'weapon-color ' + char.weapon.color"></span>
         </td>
-        <td><router-link class="button is-primary" :to="'/edit/' +  char.id ">Edit</router-link></td>
       </tr>
     </tbody>
   </table>
