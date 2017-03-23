@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="char in chars">
+      <tr v-for="char in sortedChars" v-on:click="showConsole(char)">
         <td>
           <span class="character-icon">
             <i :class="'sw-' + char.iconName"></i>
@@ -30,11 +30,26 @@
 </template>
 
 <script>
+import $ from 'jquery'
+import _ from 'lodash'
+
 export default {
   name: 'tablechars',
   props: ['chars'],
   data () {
     return {
+    }
+  },
+  methods: {
+    showConsole: function (char) {
+      console.log(char)
+      char.name += ' Si Joder!'
+    }
+  },
+  computed: {
+    sortedChars: function() {
+      console.log(this.chars)
+      return _.sortBy(this.chars, [function(c) { return c.name; }]);
     }
   }
 }
