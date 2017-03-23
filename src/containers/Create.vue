@@ -9,7 +9,6 @@ import weaponsService from '@/services/weaponsService'
 export default {
   name: 'Create',
   components: { CreateCharacter },
-
   data: () => ({
     weapons: {},
     loading: 0
