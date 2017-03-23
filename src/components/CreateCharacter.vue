@@ -48,7 +48,7 @@
       <div class="column is-full">
         <div class="field is-grouped">
           <p class="control">
-            <button @click="updateData" class="button is-primary">Submit</button>
+            <button @click="createData" class="button is-primary">Submit</button>
           </p>
           <p class="control">
             <router-link class="button is-link" to="/chars">Cancel</router-link>
@@ -63,18 +63,20 @@
 import charactersService from '@/services/charactersService'
 
 export default {
-  name: 'EditCharacter',
-  props: ['character', 'weapons'],
+  name: 'CreateCharacter',
+  props: ['weapons'],
+  data: () => ({
+    character: {}
+  }),
   methods: {
-    updateData () {
+    createData () {
       this.$apollo.mutate({
-        mutation: charactersService.updateCharacterMutation,
+        mutation: charactersService.createCharacterMutation,
         variables () {
           return {
-            id: this.character.id,
             name: this.character.name,
             side: this.character.side,
-            weaponId: this.character.weapon,
+            weaponId: this.character.weapon.id,
             iconName: this.character.iconName
           }
         }
