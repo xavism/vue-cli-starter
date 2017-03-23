@@ -30,12 +30,12 @@ const characterQuery = gql`query SingleCharacterQuery($id: ID!){
 `
 
 const updateCharacterMutation = gql`
-  mutation updateCharacter{
+  mutation updateCharacter($id: ID!, $name: String!, $side: String!, $weaponId: ID!, $iconName: String){
     updateCharacter(
-      id: $charId,
+      id: $id,
       name: $name,
       side: $side,
-      weapon: $weapon,
+      weaponId: $weaponId,
       iconName: $iconName
     ) {
       id,
@@ -49,8 +49,27 @@ const updateCharacterMutation = gql`
   }
 `
 
+const createCharacterMutation = gql`
+  mutation createCharacter($name: String!, $side: String!, $weaponId: ID!, $iconName: String){
+    createCharacter(
+      name: $name,
+      side: $side,
+      weaponId: $weaponId,
+      iconName: $iconName
+    ) {
+      id,
+      name,
+      side,
+      weapon{
+        id
+      },
+      iconName
+    }
+  }
+`
 export default {
   allCharactersQuery,
   characterQuery,
-  updateCharacterMutation
+  updateCharacterMutation,
+  createCharacterMutation
 }

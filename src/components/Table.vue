@@ -9,6 +9,9 @@
       </tr>
     </thead>
     <tbody>
+      <tr class="has-text-centered">
+        <td colspan="4"><router-link class="button is-primary" to="/create">Create</router-link></td>
+      </tr>
       <tr v-for="char in chars">
         <td>
           <span class="character-icon">
@@ -17,7 +20,7 @@
           <h2>{{ char.name }}</h2>
         </td>
         <td>
-          <i v-if="char.side == 'Ligh Side'" class='sw-rebel-alliance big-icon'></i>
+          <i v-if="char.side == 'Light Side'" class='sw-rebel-alliance big-icon'></i>
           <i v-else class='sw-imperial-emblem big-icon'></i>
         </td>
         <td>
